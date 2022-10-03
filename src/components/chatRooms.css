@@ -1,0 +1,135 @@
+.chatrooms-box {
+  margin: 10px;
+  width: 30%;
+  border-radius: 3px;
+  outline-color: #00c2b8;
+  border: 1px solid rgba(252, 252, 252, 0.4);
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  backdrop-filter: blur(1px);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.chatrooms-box h3, h4, p{
+  margin: 0;
+}
+
+.chatrooms-box h3 {
+  border-bottom: 1px solid rgba(252, 252, 252, 0.4);
+  padding: 2px 12px;
+  font-size: 23px;
+  font-weight: lighter;
+}
+
+.chatrooms-box h4 {
+  padding: 6px 0 3px 0;
+  color: white;
+  font-size: 18px;
+  font-weight: lighter;
+}
+
+.chatrooms-box p {
+  padding: 0 0 6px 0;
+  color: white;
+  font-size: 14px;
+}
+
+.one-chat {
+  color: #263238;
+  border-bottom: 1px solid rgba(252, 252, 252, 0.4);
+  margin: 0;
+  padding: 0 0 0 12px;
+  cursor: pointer;
+}
+.one-chat:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.selected-chat {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.chatrooms-box .buttons{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  background-color: #00c2b8;
+}
+
+.chatrooms-box .buttons button {
+  padding: 0;
+  margin: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60%;
+  height: 40px;
+  background-color: white;
+  color: #00c2b8;
+  border-radius: 3px;
+  border: 0;
+  cursor: pointer;
+  font-size: 1.5vw;
+}
+.chatrooms-box .buttons button:hover {
+  background-color: #efefef;
+}
+@media (max-width: 1000px) {
+  .chatrooms-box .buttons button{
+    font-size: 2vw;
+  }
+}
+@media (max-width: 500px) {
+  .chatrooms-box .buttons button{
+    font-size: 4.5vw;
+  }
+}
+
+.create-room-modal{
+  position: absolute;
+  top: 37.5%;
+  left: 20%;
+
+  margin: auto;
+  width: 60%;
+  height: 25%;
+  border-radius: 3px;
+  border: 1px solid rgba(252, 252, 252, 0.4);
+  background-color: rgb(0, 194, 184);
+  color: white;
+  backdrop-filter: blur(5px);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.create-room-modal form{
+  width: 80%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.create-room-modal input {
+  border: none;
+  padding: 10px 15px;
+  font-size: 16px;
+  font-family: inherit;
+  margin: 10px 0;
+  border-radius: 3px;
+  outline-color: #00c2b8;
+  border: 1px solid rgba(252, 252, 252, 0.4);
+  background-color: rgba(252, 252, 252, 0.2);
+  color: white;
+  width: 90%;
+}
+
+.create-room-modal button{
+  width: 100%;
+}

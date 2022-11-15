@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
-import { LinearProgress, Modal } from '@mui/material';
+import { LinearProgress, Modal, Snackbar, Alert as MuiAlert } from '@mui/material';
 
 import "./chatRooms.css"
+
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
@@ -10,6 +14,24 @@ function capitalizeFirstLetter(string) {
 
 
 function ChatRooms(props) {
+  // For snacks
+  const [snackOpen, setSnackOpen] = useState(false);
+  const [type, setType] = useState("");
+  const [message, setMessage] = useState("");
+  function snackHandler(t, m) {
+    setType(t);
+    setMessage(m);
+    setSnackOpen(true);
+  }
+  function handleSnackClose(event, reason) {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setSnackOpen(false);
+    setLoading(false);
+  };
+  // Snacks code ends
+
   const backendURL = process.env.REACT_APP_BACKEND_URL;
   const [loading, setLoading] = useState(false);
 
@@ -21,6 +43,7 @@ function ChatRooms(props) {
   function chatRoomHandler(roomID) {
     // console.log(roomID);
     props.clickedRoomID(roomID);
+    // props.setRoomSelected(true);
     if (window.innerWidth <= 500) {
       document.querySelector(".chatrooms-box").style.display = "none";
       document.getElementById("parent-chatbox").style.display = "flex";
@@ -86,6 +109,7 @@ function ChatRooms(props) {
       .catch(err => {
         console.log(err);
         setRoomCode("");
+        snackHandler("error", "Room with entered code doesn't exist.");
         setLoading(false);
         setOpenJoin(false);
       })
@@ -94,6 +118,12 @@ function ChatRooms(props) {
   return (
     <div className='chatrooms-box' >
       {loading && <LinearProgress sx={{ position: "fixed", top: 0, right: 0, left: 0 }} />}
+
+      <Snackbar open={snackOpen} autoHideDuration={5000} onClose={handleSnackClose}>
+        <Alert onClose={handleSnackClose} severity={type} sx={{ width: '100%' }}>
+          {message}
+        </Alert>
+      </Snackbar>
 
       <div>
         <h3>Your Chat Rooms</h3>

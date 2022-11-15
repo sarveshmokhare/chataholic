@@ -97,6 +97,7 @@ function ChatPage() {
     // console.log(clickedRoomID);
     // console.log(rooms);
     // console.log(user);
+    const [roomSelected, setRoomSelected] = useState(false)
     const [loading, setLoading] = useState(false)
     return (
         <div style={{ width: "100%" }}>
@@ -107,8 +108,8 @@ function ChatPage() {
             <div
                 className='second-container'
             >
-                {userEmail && <ChatRooms rooms={rooms} clickedRoomID={getClickedRoomID} userData={userData} userID={userID} setRooms={setRooms} socket={socket} />}
-                {userEmail && <ChatBox roomMessages={roomMessages} roomID={roomID} userData={userData} userID={userID} setMessages={setRoomMessages} socket={socket} roomData={roomData} setRooms={setRooms} rooms={rooms} />}
+                {userEmail && <ChatRooms rooms={rooms} clickedRoomID={getClickedRoomID} userData={userData} userID={userID} setRooms={setRooms} socket={socket} roomSelected={roomSelected} setRoomSelected={setRoomSelected} />}
+                {userEmail && <ChatBox roomMessages={roomMessages} roomID={roomID} userData={userData} userID={userID} setMessages={setRoomMessages} socket={socket} roomData={roomData} setRoomData={setRoomData} setRooms={setRooms} rooms={rooms} roomSelected={roomSelected} setRoomSelected={setRoomSelected} />}
             </div>
 
 

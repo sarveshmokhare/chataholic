@@ -51,10 +51,8 @@ const HomePage = () => {
                 snackHandler("success", "Signing you in...");
                 // console.log(res.data);
                 localStorage.setItem("userEmail", res.data.email);
-                setTimeout(() => {
-                    setLoading(false);
-                    navigate("/chats", { state: { email } });
-                }, 2000)
+                setLoading(false);
+                navigate("/chats", { state: { email } });
             })
             .catch(err => {
                 console.log(err);

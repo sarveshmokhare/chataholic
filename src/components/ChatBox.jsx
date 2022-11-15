@@ -19,6 +19,9 @@ function ChatBox(props) {
   const userData = props.userData;
   const messages = props.roomMessages;
   const roomData = props.roomData;
+  const setRoomData = props.setRoomData;
+  // const roomSelected = props.roomSelected;
+  // const setRoomSelected = props.setRoomSelected;
   // setMessages(props.roomMessages);
   // const messages = props.roomMessages;
   // const [senderData, setSenderData] = useState();
@@ -101,7 +104,8 @@ function ChatBox(props) {
           })
         })
 
-
+        props.setMessages([]);
+        setRoomData();
       })
   }
 
@@ -138,7 +142,7 @@ function ChatBox(props) {
         {messages.map((msg, ind) => {
           return (
             <div style={{ display: "flex", textAlign: (userEmail === msg.sender.email) ? "right" : "left", flexDirection: (userEmail === msg.sender.email) ? "row-reverse" : "row" }} key={ind} >
-              {userEmail === msg.sender.email ? null : <img alt="avatar" src={msg.sender.avatar} />}
+              {userEmail === msg.sender.email ? null : <div className='img-holder'><img alt="avatar" src={msg.sender.avatar} /></div>}
               <div className='msg-box' >
                 {userEmail === msg.sender.email ? null : <h4>{capitalizeFirstLetter(msg.sender.name)}:</h4>}
                 <p>{msg.content}</p>
@@ -148,7 +152,7 @@ function ChatBox(props) {
         })}
 
       </div>
-      <form onSubmit={submitMsgHandler} autoComplete='off'>
+      {roomData && <form onSubmit={submitMsgHandler} autoComplete='off'>
         <input
           placeholder="Message"
           name='message'
@@ -157,7 +161,7 @@ function ChatBox(props) {
         >
         </input>
         <button type="submit"><SendIcon /></button>
-      </form>
+      </form>}
 
       {/* View chat room members modal code */}
       <Modal
@@ -171,7 +175,7 @@ function ChatBox(props) {
           {members && members.map((member, ind) => {
             return (
               <div className='member' key={ind}>
-                <img alt="avatar" src={member.avatar} />
+                <div className='member-img-holder'><img alt="avatar" src={member.avatar} /></div>
                 <p style={{ fontSize: "20px" }}>{member.name}</p>
                 <p>{member.email}</p>
               </div>
